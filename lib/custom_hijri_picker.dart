@@ -155,6 +155,7 @@ class _DatePickerDialogState extends State<HijriDatePickerDialog> {
           headerBg: Colors.purple,
           selectedColor: Colors.green, 
           titleFontSize: 16,
+          locale: "en",
         );
       case DatePickerMode.year:
         return new HijriYearPicker(
@@ -424,6 +425,7 @@ class HijriMonthPicker extends StatefulWidget {
     required this.weekColor,
     required this.weekColorBg,
     required this.headerBg,
+    required this.locale,
     this.builders = const HijriCalendarBuilders(),
   })  : assert(
             !firstDate.isAfter(lastDate.hYear, lastDate.hMonth, lastDate.hDay)),
@@ -462,6 +464,7 @@ class HijriMonthPicker extends StatefulWidget {
   final double daysOfWeekHeight;
   final double chevronSize;
   final double rowHeight;
+  final String locale;
 
   @override
   _HijriMonthPickerState createState() => new _HijriMonthPickerState();
@@ -471,6 +474,7 @@ class _HijriMonthPickerState extends State<HijriMonthPicker> {
   @override
   void initState() {
     super.initState();
+    HijriCalendar.setLocal(widget.locale);
     // Initially display the pre-selected date.
     final int monthPage = _monthDelta(widget.firstDate, widget.selectedDate);
     _dayPickerController = new PageController(initialPage: monthPage);

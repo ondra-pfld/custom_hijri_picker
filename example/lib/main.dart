@@ -75,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
         headerBg: Colors.purple,
         titleFontSize: 16,
         selectedDate: selectedDate,
+        locale: "en",
       )
     );
   }
